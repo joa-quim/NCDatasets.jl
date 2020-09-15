@@ -1,7 +1,7 @@
-using BinDeps
-import CondaBinDeps
+#using BinDeps
+#import CondaBinDeps
 
-using Libdl
+#using Libdl
 
 function validate_netcdf_version(name,handle)
     f = Libdl.dlsym_e(handle, "nc_inq_libvers")
@@ -26,12 +26,12 @@ function validate_netcdf_version(name,handle)
     return ver > v"4.2"
 end
 
-@BinDeps.setup
-libnetcdf = library_dependency("libnetcdf", aliases = ["libnetcdf4","libnetcdf-7","netcdf"], validate = validate_netcdf_version)
+#@BinDeps.setup
+#libnetcdf = library_dependency("libnetcdf", aliases = ["libnetcdf4","libnetcdf-7","netcdf"], validate = validate_netcdf_version)
 
 #CondaBinDeps.Conda.add_channel("conda-forge")
-provides(CondaBinDeps.Manager, "libnetcdf", libnetcdf)
-provides(AptGet, "libnetcdf-dev", libnetcdf, os = :Linux)
-provides(Yum, "netcdf-devel", libnetcdf, os = :Linux)
+#provides(CondaBinDeps.Manager, "libnetcdf", libnetcdf)
+#provides(AptGet, "libnetcdf-dev", libnetcdf, os = :Linux)
+#provides(Yum, "netcdf-devel", libnetcdf, os = :Linux)
 
-@BinDeps.install Dict(:libnetcdf => :libnetcdf)
+#@BinDeps.install Dict(:libnetcdf => :libnetcdf)
